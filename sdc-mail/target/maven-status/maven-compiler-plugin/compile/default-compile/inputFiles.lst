@@ -1,0 +1,5 @@
+/data/src/main/java/com/pilaf/sdc/mail/HelloWorldWebApplication.java
+/data/src/main/java/com/pilaf/sdc/mail/repository/MailRepository.java
+/data/src/main/java/com/pilaf/sdc/mail/service/HelloWorldService.java
+/data/src/main/java/com/pilaf/sdc/mail/rest/HelloWorldController.java
+/data/src/main/java/com/pilaf/sdc/mail/model/MailDO.java

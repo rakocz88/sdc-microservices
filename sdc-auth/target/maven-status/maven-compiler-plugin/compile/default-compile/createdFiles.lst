@@ -1,0 +1,3 @@
+com/pilaf/sdc/service/HelloWorldService.class
+com/pilaf/sdc/rest/HelloWorldController.class
+com/pilaf/sdc/auth/HelloWorldWebApplication.class

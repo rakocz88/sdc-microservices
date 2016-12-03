@@ -1,0 +1,22 @@
+dbpost:
+  image: postgres
+  environment:
+    POSTGRES_PASSWORD: pass
+    POSTGRES_USER: filip
+    POSTGRES_DB: sdc
+
+user:
+  build: spring-boot-docker-run
+  volumes: 
+    - ./sdc-user:/data
+    - ~/.m2:/root/.m2
+  ports:
+    - 8081:8080
+  links:
+    - dbpost
+    
+  command: mvn spring-boot:run
+
+
+  
+

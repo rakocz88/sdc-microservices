@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="spring-boot-admin/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-admin/src/test/java"/>
+	<classpathentry kind="src" path="spring-boot-webapp-1/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-webapp-1/src/test/java"/>
+	<classpathentry kind="src" path="spring-boot-webapp-2/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-webapp-2/src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="spring-boot-admin/target/classes"/>
+</classpath>

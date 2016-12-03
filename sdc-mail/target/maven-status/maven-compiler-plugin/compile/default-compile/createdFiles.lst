@@ -1,0 +1,5 @@
+com/pilaf/sdc/mail/model/MailDO.class
+com/pilaf/sdc/mail/service/HelloWorldService.class
+com/pilaf/sdc/mail/rest/HelloWorldController.class
+com/pilaf/sdc/mail/HelloWorldWebApplication.class
+com/pilaf/sdc/mail/repository/MailRepository.class

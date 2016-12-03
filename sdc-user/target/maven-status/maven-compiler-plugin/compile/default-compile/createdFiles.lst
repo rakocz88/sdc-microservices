@@ -1,0 +1,5 @@
+com/pilaf/sdc/repository/UserRepository.class
+com/pilaf/sdc/json/UserJSON.class
+com/pilaf/sdc/UserWebApp.class
+com/pilaf/sdc/rest/UserRestController.class
+com/pilaf/sdc/model/UserDO.class
