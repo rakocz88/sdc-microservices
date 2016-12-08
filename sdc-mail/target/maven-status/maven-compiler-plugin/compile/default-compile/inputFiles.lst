@@ -1,5 +1,8 @@
-/data/src/main/java/com/pilaf/sdc/mail/HelloWorldWebApplication.java
-/data/src/main/java/com/pilaf/sdc/mail/repository/MailRepository.java
-/data/src/main/java/com/pilaf/sdc/mail/service/HelloWorldService.java
-/data/src/main/java/com/pilaf/sdc/mail/rest/HelloWorldController.java
-/data/src/main/java/com/pilaf/sdc/mail/model/MailDO.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\rest\MailRest.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\model\OutputMsgDO.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\service\SendMailService.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\BeanFactory.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\json\MailMsg.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\repository\OutputMsgRepository.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\MailApplication.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-mail\src\main\java\com\pilaf\sdc\mail\model\MessageType.java

@@ -1,3 +1,2 @@
-com/pilaf/sdc/service/HelloWorldService.class
-com/pilaf/sdc/rest/HelloWorldController.class
-com/pilaf/sdc/auth/HelloWorldWebApplication.class
+com\pilaf\sdc\auth\rest\AuthRest.class
+com\pilaf\sdc\auth\AuthApplication.class

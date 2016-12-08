@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.pilaf.sdc.auth.HelloWorldWebApplication;
+import com.pilaf.sdc.auth.AuthApplication;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = HelloWorldWebApplication.class)
+@SpringApplicationConfiguration(classes = AuthApplication.class)
 @WebIntegrationTest(randomPort = true)
 @DirtiesContext
 public class HelloWorldWebApplicationTests {
