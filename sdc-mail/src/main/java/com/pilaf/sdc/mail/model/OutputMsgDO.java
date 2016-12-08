@@ -36,6 +36,7 @@ public class OutputMsgDO implements Serializable {
 
 	public OutputMsgDO(MailMsg mailMsg) {
 		super();
+		this.id = mailMsg.getId();
 		this.recipentMail = mailMsg.getRecipent();
 		this.sendDate = LocalDate.now();
 		this.msg = mailMsg.getMsg();
@@ -52,6 +53,17 @@ public class OutputMsgDO implements Serializable {
 		this.recipentMail = recipentMail;
 		this.sendDate = sendDate;
 		this.msg = msg;
+	}
+
+	public OutputMsgDO(long id, String recipentMail, Long senderID, LocalDate sendDate, String msg,
+			MessageType messageType) {
+		super();
+		this.id = id;
+		this.recipentMail = recipentMail;
+		this.senderID = senderID;
+		this.sendDate = sendDate;
+		this.msg = msg;
+		this.messageType = messageType;
 	}
 
 	public long getId() {
@@ -100,6 +112,55 @@ public class OutputMsgDO implements Serializable {
 
 	public void setMessageType(MessageType messageType) {
 		this.messageType = messageType;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((messageType == null) ? 0 : messageType.hashCode());
+		result = prime * result + ((msg == null) ? 0 : msg.hashCode());
+		result = prime * result + ((recipentMail == null) ? 0 : recipentMail.hashCode());
+		result = prime * result + ((sendDate == null) ? 0 : sendDate.hashCode());
+		result = prime * result + ((senderID == null) ? 0 : senderID.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OutputMsgDO other = (OutputMsgDO) obj;
+		if (id != other.id)
+			return false;
+		if (messageType != other.messageType)
+			return false;
+		if (msg == null) {
+			if (other.msg != null)
+				return false;
+		} else if (!msg.equals(other.msg))
+			return false;
+		if (recipentMail == null) {
+			if (other.recipentMail != null)
+				return false;
+		} else if (!recipentMail.equals(other.recipentMail))
+			return false;
+		if (sendDate == null) {
+			if (other.sendDate != null)
+				return false;
+		} else if (!sendDate.equals(other.sendDate))
+			return false;
+		if (senderID == null) {
+			if (other.senderID != null)
+				return false;
+		} else if (!senderID.equals(other.senderID))
+			return false;
+		return true;
 	}
 
 }

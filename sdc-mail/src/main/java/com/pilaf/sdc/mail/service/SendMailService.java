@@ -12,8 +12,13 @@ import com.pilaf.sdc.mail.repository.OutputMsgRepository;
 @Service
 public class SendMailService {
 
-	@Autowired
 	private OutputMsgRepository outputMsgRepository;
+
+	@Autowired
+	public SendMailService(OutputMsgRepository outputMsgRepository) {
+		super();
+		this.outputMsgRepository = outputMsgRepository;
+	}
 
 	public OutputMsgDO sendMail(MailMsg msg) {
 		OutputMsgDO mailMessage = new OutputMsgDO(msg);
