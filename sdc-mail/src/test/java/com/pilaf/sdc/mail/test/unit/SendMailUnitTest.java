@@ -37,7 +37,7 @@ public class SendMailUnitTest {
 	@InjectMocks
 	private SendMailService sendMailService;
 
-	private MailMsg mailMsg = new MailMsg(MSG_ID, MESSAGE_SEND, RECIPENT_ADDRESS, SENDER_ID);
+	private MailMsg mailMsg = new MailMsg(MESSAGE_SEND, RECIPENT_ADDRESS, SENDER_ID);
 
 	private OutputMsgDO outputMsgDO = new OutputMsgDO(MSG_ID, RECIPENT_ADDRESS, SENDER_ID, SEND_TIME, MESSAGE_SEND,
 			MessageType.MAIL);

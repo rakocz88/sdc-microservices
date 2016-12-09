@@ -21,7 +21,8 @@ public class SendMailService {
 	}
 
 	public OutputMsgDO sendMail(MailMsg msg) {
-		OutputMsgDO mailMessage = new OutputMsgDO(msg);
+		OutputMsgDO mailMessage = new OutputMsgDO();
+		mailMessage.fillObject(msg);
 		return outputMsgRepository.save(mailMessage);
 	}
 

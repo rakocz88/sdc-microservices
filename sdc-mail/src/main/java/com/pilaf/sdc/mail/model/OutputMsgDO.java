@@ -1,6 +1,5 @@
 package com.pilaf.sdc.mail.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -13,16 +12,11 @@ import com.pilaf.sdc.mail.json.MailMsg;
 
 @Entity
 @Table(name = "OutputMsg")
-public class OutputMsgDO implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5804169974084961649L;
+public class OutputMsgDO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id = 0l;
 
 	private String recipentMail;
 
@@ -36,7 +30,6 @@ public class OutputMsgDO implements Serializable {
 
 	public OutputMsgDO(MailMsg mailMsg) {
 		super();
-		this.id = mailMsg.getId();
 		this.recipentMail = mailMsg.getRecipent();
 		this.sendDate = LocalDate.now();
 		this.msg = mailMsg.getMsg();
@@ -66,7 +59,7 @@ public class OutputMsgDO implements Serializable {
 		this.messageType = messageType;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -161,6 +154,14 @@ public class OutputMsgDO implements Serializable {
 		} else if (!senderID.equals(other.senderID))
 			return false;
 		return true;
+	}
+
+	public void fillObject(MailMsg mailMsg) {
+		this.recipentMail = mailMsg.getRecipent();
+		this.sendDate = LocalDate.now();
+		this.msg = mailMsg.getMsg();
+		this.senderID = mailMsg.getSender();
+		this.messageType = MessageType.MAIL;
 	}
 
 }
