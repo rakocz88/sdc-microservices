@@ -1,5 +1,5 @@
-/data/src/main/java/com/pilaf/sdc/repository/UserRepository.java
-/data/src/main/java/com/pilaf/sdc/rest/UserRestController.java
-/data/src/main/java/com/pilaf/sdc/model/UserDO.java
-/data/src/main/java/com/pilaf/sdc/UserWebApp.java
-/data/src/main/java/com/pilaf/sdc/json/UserJSON.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\rest\UserRestController.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\repository\UserRepository.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\UserWebApp.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\json\UserJSON.java
+C:\prywatne\sdc-micro\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\model\UserDO.java

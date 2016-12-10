@@ -3,7 +3,7 @@ dbpost:
   environment:
     POSTGRES_PASSWORD: pass
     POSTGRES_USER: filip
-    POSTGRES_DB: sdc
+    POSTGRES_DB: sdcuser, sdcmail
 
 user:
   build: spring-boot-docker-run
@@ -11,10 +11,20 @@ user:
     - ./sdc-user:/data
     - ~/.m2:/root/.m2
   ports:
-    - 8081:8080
+    - 8081:8081
   links:
     - dbpost
-    
+  command: mvn spring-boot:run
+  
+mail:
+  build: spring-boot-docker-run
+  volumes: 
+    - ./sdc-mail:/data
+    - ~/.m2:/root/.m2
+  ports:
+    - 8083:8083
+  links:
+    - dbpost
   command: mvn spring-boot:run
 
 

@@ -1,0 +1,6 @@
+sdc-mail/target/*
+sdc-admin/target/*
+sdc-auth/target/*
+sdc-router/target/*
+sdc-user/target/*
+sdc-mail/target/*
