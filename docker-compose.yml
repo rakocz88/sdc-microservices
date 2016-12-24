@@ -3,7 +3,7 @@ dbpost:
   environment:
     POSTGRES_PASSWORD: pass
     POSTGRES_USER: filip
-    POSTGRES_DB: sdcuser, sdcmail
+    POSTGRES_DB: sdc
 
 user:
   build: spring-boot-docker-run
