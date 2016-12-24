@@ -14,7 +14,6 @@ public class MailApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MailApplication.class, args);
-		throw new NullPointerException();
 	}
 
 }

@@ -1,5 +1,5 @@
 FROM maven:3.2.5-jdk-8
-MAINTAINER Etienne Peiniau <etienne.peiniau@gmail.com>
+MAINTAINER Filip Radziejewski <filip.radziejewski2@gmail.com>
 
 WORKDIR /data
 
