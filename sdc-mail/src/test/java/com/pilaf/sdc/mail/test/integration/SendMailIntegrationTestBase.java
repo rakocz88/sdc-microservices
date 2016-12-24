@@ -11,13 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pilaf.sdc.mail.MailApplication;
 import com.pilaf.sdc.mail.repository.OutputMsgRepository;
-import com.pilaf.sdc.mail.test.TestConstants;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MailApplication.class, loader = SpringApplicationContextLoader.class)
 @WebIntegrationTest(randomPort = true)
 @DirtiesContext
-public class SendMailIntegrationTestBase implements TestConstants {
+public class SendMailIntegrationTestBase {
 
 	@Value("${local.server.port}")
 	protected int port;

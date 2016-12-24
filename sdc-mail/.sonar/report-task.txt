@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:sdc-micro-mail
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:sdc-micro-mail
+ceTaskId=AVkwe1CK9MAaOprc2JOq
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVkwe1CK9MAaOprc2JOq

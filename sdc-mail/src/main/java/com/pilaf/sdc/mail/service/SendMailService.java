@@ -14,6 +14,7 @@ public class SendMailService {
 
 	private OutputMsgRepository outputMsgRepository;
 
+
 	@Autowired
 	public SendMailService(OutputMsgRepository outputMsgRepository) {
 		super();

@@ -41,13 +41,6 @@ public class OutputMsgDO {
 		super();
 	}
 
-	public OutputMsgDO(String recipentMail, LocalDate sendDate, String msg) {
-		super();
-		this.recipentMail = recipentMail;
-		this.sendDate = sendDate;
-		this.msg = msg;
-	}
-
 	public OutputMsgDO(long id, String recipentMail, Long senderID, LocalDate sendDate, String msg,
 			MessageType messageType) {
 		super();

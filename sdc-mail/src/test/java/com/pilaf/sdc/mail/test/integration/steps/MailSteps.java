@@ -25,6 +25,7 @@ public class MailSteps extends SendMailIntegrationTestBase {
 
 	@Given("^I am a user with id (\\d+)$")
 	public void i_am_a_user_with_id(int arg1) throws Throwable {
+		// TODO implement login
 	}
 
 	@Given("^User (\\d+) send an email with text \"(.*?)\" and recipent \"(.*?)\"$")
@@ -55,7 +56,7 @@ public class MailSteps extends SendMailIntegrationTestBase {
 	public void i_should_have_message_in_filter_result(int amountOfMessages) throws Throwable {
 		assertThat("List should have " + amountOfMessages + " messages but had " + returnedList.size() + " messages",
 				returnedList.size() == amountOfMessages);
-		if (returnedList.size() > 0) {
+		if (!returnedList.isEmpty()) {
 			sendMessage = returnedList.get(0);
 		}
 	}
