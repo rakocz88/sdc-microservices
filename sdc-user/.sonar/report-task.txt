@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:sdc-micro-user
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:sdc-micro-user
+ceTaskId=AVlAFmNLvGh-B1cZidBJ
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVlAFmNLvGh-B1cZidBJ
