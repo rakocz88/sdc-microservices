@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pilaf.sdc.mail.json.MailMsg;
+import com.pilaf.sdc.mail.model.OutputMsgDO;
 import com.pilaf.sdc.user.json.UserJSON;
 import com.pilaf.sdc.user.model.AddressDO;
 import com.pilaf.sdc.user.model.ContactDO;
@@ -71,4 +74,11 @@ public class UserRestController {
 		return userService.findUserByLogin(login);
 	}
 
+	@RequestMapping(value= "register", method = RequestMethod.POST)
+	public UserDO registerUser(@RequestBody UserJSON userJson){
+		 new TestRestTemplate().postForEntity()
+		entity = new TestRestTemplate().postForEntity("http://localhost:" + this.port + "/mail/send",
+				new MailMsg(messageText, recipentAddress, senderId), OutputMsgDO.class);
+		return userService.registerUser(new UserDO(userJSon));
+	}
 }

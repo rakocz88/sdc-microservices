@@ -25,46 +25,16 @@ import com.pilaf.sdc.user.model.UserDO;
 import com.pilaf.sdc.user.model.UserType;
 import com.pilaf.sdc.user.repository.UserRepository;
 import com.pilaf.sdc.user.service.UserService;
+import com.pilaf.sdc.user.test.help.SdcTestConstants;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserServiceUnitTest {
+public class UserServiceUnitTest implements SdcTestConstants {
 
 	@Mock
 	private UserRepository userRepository;
 
 	@InjectMocks
 	private UserService userService;
-
-	private static final String EXAMLE_USER_1_NAME = "name";
-
-	private UserDO user1 = new UserDO(EXAMLE_USER_1_NAME);
-	private UserDO user2 = new UserDO(EXAMLE_USER_1_NAME + 1);
-	private UserDO user3 = new UserDO(EXAMLE_USER_1_NAME + 2);
-	private UserDO user4 = new UserDO(EXAMLE_USER_1_NAME + 3);
-	private UserDO user5 = new UserDO(EXAMLE_USER_1_NAME + 4);
-	private UserDO user6 = new UserDO(EXAMLE_USER_1_NAME + 5);
-	private UserDO user7 = new UserDO(EXAMLE_USER_1_NAME + 6);
-	private UserDO user8 = new UserDO(EXAMLE_USER_1_NAME + 7);
-	private UserDO user9 = new UserDO(EXAMLE_USER_1_NAME + 8);
-	private UserDO user10 = new UserDO(EXAMLE_USER_1_NAME + 9);
-
-	private static final String LOGIN_NAME = "login1";
-	private static final String PASSWORD_NAME = "pass1";
-	private static final String PHONE_NR_1 = "123123456";
-
-	private static final String USER_FIRST_NAME = "filip";
-	private static final String USER_SURNAME = "Cos";
-	private static final String EMAIL_NAME_1 = "example@ex.pl";
-	private static final ContactDO CONTACT_1 = new ContactDO(PHONE_NR_1, EMAIL_NAME_1);
-	private static final AddressDO ADDRESS_1 = new AddressDO("123-12", "Wroclaw", "DS", Country.POLAND, "23", "2a");
-	private static final LocalDate USER_BIRTH_DATE = LocalDate.of(1990, 2, 20);
-	private static final List<UserType> LIST_TYPE_LIST = Arrays
-			.asList(new UserType[] { UserType.PHOTOGRAPHER, UserType.USER });
-
-	private UserDO userWithLogin = new UserDO(LOGIN_NAME);
-	private UserDO userWithLoginAndPassword = new UserDO(LOGIN_NAME, PASSWORD_NAME);
-	private UserDO userWithFullData = new UserDO(LOGIN_NAME, PASSWORD_NAME, USER_FIRST_NAME, USER_SURNAME,
-			USER_BIRTH_DATE, ADDRESS_1, LIST_TYPE_LIST, CONTACT_1);
 
 	@Before
 	public void injectMocks() {

@@ -1,22 +1,14 @@
 package com.pilaf.sdc.user.test.integration;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.util.ArrayList;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,30 +16,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.pilaf.sdc.user.UserWebApp;
 import com.pilaf.sdc.user.model.UserDO;
 import com.pilaf.sdc.user.repository.UserRepository;
+import com.pilaf.sdc.user.test.help.SdcTestConstants;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = UserWebApp.class, loader = SpringApplicationContextLoader.class)
 @WebIntegrationTest(randomPort = true)
 @DirtiesContext
-public class UserIntegrationSearchTest {
+public class UserIntegrationSearchTest implements SdcTestConstants {
 
 	@Value("${local.server.port}")
 	protected int port;
 
 	@Autowired
 	protected UserRepository userRepository;
-
-	private static final String USER_NAME_1 = "Adam";
-	private static final String USER_NAME_2 = "Kamil";
-	private static final String USER_NAME_3 = "Bogdan";
-	private static final String USER_NAME_4 = "Marcin";
-	private static final String USER_NAME_5 = "Janina";
-	private static final String USER_NAME_6 = "Krystna";
-	private static final String USER_NAME_7 = "Bozena";
-	private static final String USER_NAME_8 = "Witek";
-	private static final String USER_NAME_9 = "Borys";
-	private static final String USER_NAME_10 = "Grzegorz";
-	private static final String USER_NAME_11 = "Padora";
 
 	@Before
 	public void beforeTest() {
@@ -61,35 +42,38 @@ public class UserIntegrationSearchTest {
 
 	private List<UserDO> getUsersData() {
 		List<UserDO> userList = new ArrayList<UserDO>();
-		// userList.add(new UserDO(USER_NAME_1));
-		// userList.add(new UserDO(USER_NAME_2));
-		// userList.add(new UserDO(USER_NAME_3));
-		// userList.add(new UserDO(USER_NAME_4));
-		// userList.add(new UserDO(USER_NAME_5));
-		// userList.add(new UserDO(USER_NAME_6));
-		// userList.add(new UserDO(USER_NAME_7));
-		// userList.add(new UserDO(USER_NAME_8));
-		// userList.add(new UserDO(USER_NAME_9));
-		// userList.add(new UserDO(USER_NAME_10));
-		// userList.add(new UserDO(USER_NAME_11));
+		userList.add(new UserDO(USER_NAME_1));
+		userList.add(new UserDO(USER_NAME_2));
+		userList.add(new UserDO(USER_NAME_3));
+		userList.add(new UserDO(USER_NAME_4));
+		userList.add(new UserDO(USER_NAME_5));
+		userList.add(new UserDO(USER_NAME_6));
+		userList.add(new UserDO(USER_NAME_7));
+		userList.add(new UserDO(USER_NAME_8));
+		userList.add(new UserDO(USER_NAME_9));
+		userList.add(new UserDO(USER_NAME_10));
+		userList.add(new UserDO(USER_NAME_11));
 		return userList;
 	}
 
-	@Test
-	public void searchFilterUsers() {
-		Map<String, String> uriVariables = new HashMap<>();
-		ResponseEntity<UserDO[]> entity = new TestRestTemplate().getForEntity(
-				"http://localhost:" + this.port + "/user/all/0/5/ASC/login", UserDO[].class, uriVariables);
-		System.err.println(entity);
-	}
+	// @Test
+	// public void searchFilterUsers() {
+	// Map<String, String> uriVariables = new HashMap<>();
+	// List entity = new TestRestTemplate().getForEntity("http://localhost:" +
+	// this.port + "/user/all/0/5/ASC/login",
+	// CustomPageImpl.class, uriVariables).getBody();
+	// System.err.println(entity);
+	// }
 
-	@Test
-	public void searchUserByLogin() {
-		Map<String, String> uriVariables = new HashMap<>();
-		ResponseEntity<UserDO> entity = new TestRestTemplate().getForEntity(
-				"http://localhost:" + this.port + "/user/byLogin/" + USER_NAME_1, UserDO.class, uriVariables);
-		UserDO returnedUser = entity.getBody();
-		assertThat("Wrong userName", USER_NAME_1.equals(returnedUser.getLogin()));
-	}
+	// @Test
+	// public void searchUserByLogin() {
+	// Map<String, String> uriVariables = new HashMap<>();
+	// ResponseEntity<UserDO> entity = new TestRestTemplate().getForEntity(
+	// "http://localhost:" + this.port + "/user/byLogin/" + USER_NAME_1,
+	// UserDO.class, uriVariables);
+	// UserDO returnedUser = entity.getBody();
+	// assertThat("Wrong userName",
+	// USER_NAME_1.equals(returnedUser.getLogin()));
+	// }
 
 }

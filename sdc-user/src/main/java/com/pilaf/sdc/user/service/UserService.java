@@ -35,4 +35,9 @@ public class UserService {
 		return userRepository.findByLogin(userLogin);
 	}
 
+	public UserDO registerUser(UserDO userDO) {
+		restTe
+		return null;
+	}
+
 }

@@ -50,6 +50,8 @@ public class UserDO implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private ContactDO contact;
 
+	private boolean active;
+
 	public UserDO() {
 		super();
 	}
@@ -162,14 +164,19 @@ public class UserDO implements Serializable {
 		this.contact = contact;
 	}
 
-	public String toString() {
-		return "User [id=" + getId() + ", login=" + login + ", password=" + password + "]";
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
@@ -191,6 +198,8 @@ public class UserDO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		UserDO other = (UserDO) obj;
+		if (active != other.active)
+			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
