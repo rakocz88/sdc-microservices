@@ -9,6 +9,7 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 
 import com.pilaf.sdc.mail.json.MailMsg;
+import com.pilaf.sdc.mail.json.MailResponse;
 import com.pilaf.sdc.mail.model.MessageType;
 import com.pilaf.sdc.mail.model.OutputMsgDO;
 import com.pilaf.sdc.mail.test.integration.SendMailIntegrationTestBase;
@@ -19,7 +20,7 @@ import cucumber.api.java.en.When;
 
 public class MailSteps extends SendMailIntegrationTestBase {
 
-	private ResponseEntity<OutputMsgDO> entity;
+	private ResponseEntity<MailResponse> entity;
 	private List<OutputMsgDO> returnedList;
 	private OutputMsgDO sendMessage;
 
@@ -35,11 +36,11 @@ public class MailSteps extends SendMailIntegrationTestBase {
 				.save(new OutputMsgDO(0l, recipent, senderId, LocalDate.now(), messageText, MessageType.MAIL));
 	}
 
-	@When("^As user (\\d+) I send an email message with \"(.*?)\" to recipent \"(.*?)\"$")
+	@When("^As user (\\d+) I send an email message with \"(.*?)\" to recipent \"(.*?)\" and subject \"(.*?)\"$")
 	public void as_user_I_send_an_email_message_with_to_recipent(long senderId, String messageText,
-			String recipentAddress) throws Throwable {
+			String recipentAddress, String title) throws Throwable {
 		entity = new TestRestTemplate().postForEntity("http://localhost:" + this.port + "/mail/send",
-				new MailMsg(messageText, recipentAddress, senderId), OutputMsgDO.class);
+				new MailMsg(messageText, title, recipentAddress, senderId), MailResponse.class);
 	}
 
 	@Then("^I should recive response with status (\\d+)$")

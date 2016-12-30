@@ -1,14 +1,20 @@
 package com.pilaf.sdc.user.test.integration;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -65,15 +71,13 @@ public class UserIntegrationSearchTest implements SdcTestConstants {
 	// System.err.println(entity);
 	// }
 
-	// @Test
-	// public void searchUserByLogin() {
-	// Map<String, String> uriVariables = new HashMap<>();
-	// ResponseEntity<UserDO> entity = new TestRestTemplate().getForEntity(
-	// "http://localhost:" + this.port + "/user/byLogin/" + USER_NAME_1,
-	// UserDO.class, uriVariables);
-	// UserDO returnedUser = entity.getBody();
-	// assertThat("Wrong userName",
-	// USER_NAME_1.equals(returnedUser.getLogin()));
-	// }
+	@Test
+	public void searchUserByLogin() {
+		Map<String, String> uriVariables = new HashMap<>();
+		ResponseEntity<UserDO> entity = new TestRestTemplate().getForEntity(
+				"http://localhost:" + this.port + "/user/byLogin/" + USER_NAME_1, UserDO.class, uriVariables);
+		UserDO returnedUser = entity.getBody();
+		assertThat("Wrong userName", USER_NAME_1.equals(returnedUser.getLogin()));
+	}
 
 }

@@ -29,6 +29,8 @@ public class SendMailUnitTest {
 
 	private static final String MESSAGE_SEND = "msg";
 
+	private static final String MESSAGE_SUBJECT = "msg";
+
 	private static final LocalDate SEND_TIME = LocalDate.now();
 
 	@Mock
@@ -37,7 +39,7 @@ public class SendMailUnitTest {
 	@InjectMocks
 	private SendMailService sendMailService;
 
-	private MailMsg mailMsg = new MailMsg(MESSAGE_SEND, RECIPENT_ADDRESS, SENDER_ID);
+	private MailMsg mailMsg = new MailMsg(MESSAGE_SEND, MESSAGE_SUBJECT, RECIPENT_ADDRESS, SENDER_ID);
 
 	private OutputMsgDO outputMsgDO = new OutputMsgDO(MSG_ID, RECIPENT_ADDRESS, SENDER_ID, SEND_TIME, MESSAGE_SEND,
 			MessageType.MAIL);

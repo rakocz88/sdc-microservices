@@ -10,9 +10,9 @@ Scenario: As user with id 1 send mail message to recipent "test@t.pl" with messa
 	Given I am a user with id 1 
 	When I filter all MessageOutputs by sender with id 1
 	Then I should have 0 message in filter result 
-	When As user 1 I send an email message with "test2" to recipent "test2@t.pl" 
+	When As user 1 I send an email message with "test2" to recipent "filip.radziejewski2@earp.pl" and subject "subject1"
 	Then I should recive response with status 200 
 	When I filter all MessageOutputs by sender with id 1 
 	Then I should have 1 message in filter result 
-	And I should get a  messageoutput with message text "test2" and recipent "test2@t.pl" 
+	And I should get a  messageoutput with message text "test2" and recipent "filip.radziejewski2@earp.pl" 
 	

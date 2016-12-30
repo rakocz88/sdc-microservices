@@ -1,4 +1,4 @@
-package com.pilaf.sdc.mail.json;
+package com.pilaf.sdc.user.json;
 
 import java.io.Serializable;
 
@@ -15,18 +15,15 @@ public class MailMsg implements Serializable {
 
 	private Long sender;
 
-	private String subject;
-
 	public MailMsg() {
 		super();
 	}
 
-	public MailMsg(String msg, String subject, String recipent, Long sender) {
+	public MailMsg(String msg, String recipent, Long sender) {
 		super();
 		this.msg = msg;
 		this.recipent = recipent;
 		this.sender = sender;
-		this.subject = subject;
 	}
 
 	public String getMsg() {
@@ -51,14 +48,6 @@ public class MailMsg implements Serializable {
 
 	public void setSender(Long sender) {
 		this.sender = sender;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
 	}
 
 }

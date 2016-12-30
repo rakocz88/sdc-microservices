@@ -4,12 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 import com.pilaf.sdc.user.model.AddressDO;
 import com.pilaf.sdc.user.model.ContactDO;
-import com.pilaf.sdc.user.model.UserDO;
 import com.pilaf.sdc.user.model.UserType;
 
 public class UserJSON implements Serializable {
@@ -36,6 +32,8 @@ public class UserJSON implements Serializable {
 	private List<UserType> userType;
 
 	private ContactDO contact;
+
+	private String activateCode;
 
 	public UserJSON() {
 		super();
@@ -124,6 +122,14 @@ public class UserJSON implements Serializable {
 
 	public void setContact(ContactDO contact) {
 		this.contact = contact;
+	}
+
+	public String getActivateCode() {
+		return activateCode;
+	}
+
+	public void setActivateCode(String activateCode) {
+		this.activateCode = activateCode;
 	}
 
 }

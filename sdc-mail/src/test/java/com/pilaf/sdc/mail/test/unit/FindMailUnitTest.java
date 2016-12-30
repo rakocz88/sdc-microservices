@@ -32,6 +32,8 @@ public class FindMailUnitTest {
 
 	private static final String MESSAGE_SEND = "msg";
 
+	private static final String MAIL_SUBJECT = "subject1";
+
 	private static final LocalDate SEND_TIME = LocalDate.now();
 
 	private OutputMsgDO returnedMsg;
@@ -42,7 +44,7 @@ public class FindMailUnitTest {
 	@InjectMocks
 	private SendMailService sendMailService;
 
-	private MailMsg mailMsg = new MailMsg(MESSAGE_SEND, RECIPENT_ADDRESS, SENDER_ID);
+	private MailMsg mailMsg = new MailMsg(MESSAGE_SEND, MAIL_SUBJECT, RECIPENT_ADDRESS, SENDER_ID);
 
 	private OutputMsgDO outputMsgDO = new OutputMsgDO(MSG_ID, RECIPENT_ADDRESS, SENDER_ID, SEND_TIME, MESSAGE_SEND,
 			MessageType.MAIL);

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pilaf.sdc.mail.enums.MailResponseMsg;
 import com.pilaf.sdc.mail.json.MailMsg;
+import com.pilaf.sdc.mail.json.MailResponse;
 import com.pilaf.sdc.mail.model.OutputMsgDO;
 import com.pilaf.sdc.mail.service.SendMailService;
 
@@ -25,8 +27,9 @@ public class MailRest {
 
 	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public OutputMsgDO sendMsg(@RequestBody MailMsg mailMsg) {
-		return this.sendMailService.sendMail(mailMsg);
+	public MailResponse sendMsg(@RequestBody MailMsg mailMsg) {
+		this.sendMailService.sendMail(mailMsg);
+		return new MailResponse(MailResponseMsg.SENT);
 	}
 
 	@ResponseBody

@@ -7,8 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.pilaf.sdc.mail.json.MailMsg;
@@ -22,6 +23,13 @@ public class SendMailService {
 	private OutputMsgRepository outputMsgRepository;
 
 	@Autowired
+	private JavaMailSenderImpl javaMailService;
+
+	public SendMailService() {
+		super();
+	}
+
+	@Autowired
 	public SendMailService(OutputMsgRepository outputMsgRepository) {
 		super();
 		this.outputMsgRepository = outputMsgRepository;
@@ -30,6 +38,12 @@ public class SendMailService {
 	public OutputMsgDO sendMail(MailMsg msg) {
 		OutputMsgDO mailMessage = new OutputMsgDO();
 		mailMessage.fillObject(msg);
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom(msg.getSender().toString());
+		simpleMailMessage.setTo(msg.getRecipent());
+		simpleMailMessage.setSubject(msg.getSubject());
+		simpleMailMessage.setText(msg.getMsg());
+		javaMailService.send(simpleMailMessage);
 		return outputMsgRepository.save(mailMessage);
 	}
 

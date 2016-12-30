@@ -2,7 +2,6 @@ package com.pilaf.sdc.user.test.unit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,11 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 
-import com.pilaf.sdc.user.model.AddressDO;
-import com.pilaf.sdc.user.model.ContactDO;
-import com.pilaf.sdc.user.model.Country;
 import com.pilaf.sdc.user.model.UserDO;
-import com.pilaf.sdc.user.model.UserType;
 import com.pilaf.sdc.user.repository.UserRepository;
 import com.pilaf.sdc.user.service.UserService;
 import com.pilaf.sdc.user.test.help.SdcTestConstants;
