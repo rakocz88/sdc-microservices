@@ -39,16 +39,16 @@ public class MailRest {
 	}
 
 	@ResponseBody
+	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "byRecipent/{mail}", method = RequestMethod.GET)
+	public List<OutputMsgDO> getMsgBySender(@PathVariable("mail") String mail) {
+		return sendMailService.getMessagesByRecipent(mail);
+	}
+
+	@ResponseBody
 	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "page/{sortValue}/{page}/{direction}", method = RequestMethod.GET)
 	public Page<OutputMsgDO> getMsgByPage(@PathVariable("page") int page, @PathVariable("sortValue") String sortValue,
 			@PathVariable("direction") String direction) {
 		return sendMailService.getMessagesPage(sortValue, page, direction);
-	}
-
-	@ResponseBody
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "init", method = RequestMethod.GET)
-	public List<OutputMsgDO> initMsgData() {
-		return sendMailService.initMsgOutputData();
 	}
 
 }

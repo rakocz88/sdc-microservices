@@ -11,4 +11,6 @@ import com.pilaf.sdc.mail.model.OutputMsgDO;
 public interface OutputMsgRepository extends JpaRepository<OutputMsgDO, Long> {
 
 	public List<OutputMsgDO> findBySenderID(Long senderId);
+
+	public List<OutputMsgDO> findByRecipentMail(String recipentMail);
 }

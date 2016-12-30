@@ -49,7 +49,7 @@ public class UserService {
 	public UserDO registerUser(UserDO userDO) {
 		userRepository.save(userDO);
 		String code = codeGenerator.generateCode();
-		MailMsg mailMsg = new MailMsg(code, userDO.getLogin(), 1l);
+		MailMsg mailMsg = new MailMsg(code, userDO.getContact().getEmailAddress(), 1l);
 		mailService.sendMail(mailMsg);
 		userActivationCodeRepository.save(new UserActivationCodeDO(code, userDO));
 		return userDO;
@@ -73,6 +73,11 @@ public class UserService {
 	private void terminateCode(UserActivationCodeDO code) {
 		code.setTerminated(true);
 		userActivationCodeRepository.save(code);
+	}
+
+	public List<UserActivationCodeDO> getActivationCodesByUserId(Long userid) {
+		UserDO user = userRepository.findOne(userid);
+		return userActivationCodeRepository.findByUser(user);
 	}
 
 }

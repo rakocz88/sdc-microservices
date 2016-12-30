@@ -4,3 +4,4 @@ sdc-auth/target/*
 sdc-router/target/*
 sdc-user/target/*
 sdc-mail/target/*
+sdc-test/target/*

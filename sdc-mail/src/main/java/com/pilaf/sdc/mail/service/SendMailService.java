@@ -56,27 +56,8 @@ public class SendMailService {
 		return outputMsgRepository.findAll(request);
 	}
 
-	public List<OutputMsgDO> initMsgOutputData() {
-		outputMsgRepository.save(new OutputMsgDO(0, "raw1@r.pl", 1l, LocalDate.now(), "msg1", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw2@r.pl", 1l, LocalDate.now(), "msg2", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw3@r.pl", 1l, LocalDate.now(), "msg3", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw4@r.pl", 1l, LocalDate.now(), "msg4", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw5@r.pl", 1l, LocalDate.now(), "msg5", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw6@r.pl", 1l, LocalDate.now(), "msg6", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw7@r.pl", 1l, LocalDate.now(), "msg7", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw8@r.pl", 1l, LocalDate.now(), "msg8", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw9@r.pl", 1l, LocalDate.now(), "msg9", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw10@r.pl", 1l, LocalDate.now(), "msg10", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw11@r.pl", 1l, LocalDate.now(), "msg11", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw12@r.pl", 1l, LocalDate.now(), "msg12", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw13@r.pl", 1l, LocalDate.now(), "msg13", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw14@r.pl", 1l, LocalDate.now(), "msg14", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw15@r.pl", 1l, LocalDate.now(), "msg15", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw16@r.pl", 1l, LocalDate.now(), "msg16", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw17@r.pl", 1l, LocalDate.now(), "msg17", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw18@r.pl", 1l, LocalDate.now(), "msg18", MessageType.MAIL));
-		outputMsgRepository.save(new OutputMsgDO(0, "raw19@r.pl", 1l, LocalDate.now(), "msg19", MessageType.MAIL));
-		return new ArrayList<>();
+	public List<OutputMsgDO> getMessagesByRecipent(String mail) {
+		return outputMsgRepository.findByRecipentMail(mail);
 	}
 
 }

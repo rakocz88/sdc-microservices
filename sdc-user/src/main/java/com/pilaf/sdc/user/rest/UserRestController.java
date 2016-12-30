@@ -1,5 +1,7 @@
 package com.pilaf.sdc.user.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pilaf.sdc.user.json.UserJSON;
+import com.pilaf.sdc.user.model.UserActivationCodeDO;
 import com.pilaf.sdc.user.model.UserDO;
 import com.pilaf.sdc.user.service.UserService;
 
@@ -55,5 +58,10 @@ public class UserRestController {
 	@RequestMapping(value = "register/activate", method = RequestMethod.POST)
 	public String activateUser(@RequestBody UserJSON userJson) {
 		return userService.activateUser(userJson.getId(), userJson.getActivateCode());
+	}
+
+	@RequestMapping(value = "code/{userid}", method = RequestMethod.GET)
+	public List<UserActivationCodeDO> getCodesByUser(@PathVariable("userid") Long userid) {
+		return userService.getActivationCodesByUserId(userid);
 	}
 }
