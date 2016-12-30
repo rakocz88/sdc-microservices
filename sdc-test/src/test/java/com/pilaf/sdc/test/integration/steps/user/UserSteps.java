@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.boot.test.TestRestTemplate;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.pilaf.sdc.mail.model.OutputMsgDO;
 import com.pilaf.sdc.test.Constants;
+import com.pilaf.sdc.user.json.SimpleResponse;
 import com.pilaf.sdc.user.json.UserJSON;
 import com.pilaf.sdc.user.model.ContactDO;
 import com.pilaf.sdc.user.model.UserActivationCodeDO;
@@ -77,28 +77,41 @@ public class UserSteps implements Constants {
 	}
 
 	@Then("^The user \"(.*?)\" should exist and have the filds pass= \"(.*?)\" , firstname = \"(.*?)\" , surname = \"(.*?)\"$")
-	public void the_user_should_exist_and_have_the_filds_pass_firstname_surname(String arg1, String arg2, String arg3,
-			String arg4) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+	public void the_user_should_exist_and_have_the_filds_pass_firstname_surname(String login, String password,
+			String firstName, String surname) throws Throwable {
+		ResponseEntity<UserDO> userResponse = new TestRestTemplate()
+				.getForEntity(LOCALHOST + USER_PORT + "/user/byLogin/" + login, UserDO.class);
+		UserDO user = userResponse.getBody();
+		assertThat("Wrong user password", password.equals(user.getPassword()));
+		assertThat("Wrong user first name", firstName.equals(user.getFirstName()));
+		assertThat("Wrong user surname", surname.equals(user.getSurname()));
 	}
 
 	@Then("^the user \"(.*?)\" should not be active$")
-	public void the_user_should_not_be_active(String arg1) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+	public void the_user_should_not_be_active(String login) throws Throwable {
+		ResponseEntity<UserDO> userResponse = new TestRestTemplate()
+				.getForEntity(LOCALHOST + USER_PORT + "/user/byLogin/" + login, UserDO.class);
+		UserDO user = userResponse.getBody();
+		assertThat("User should not be active", !user.isActive());
 	}
 
 	@When("^The user \"(.*?)\" send the activation code to the server$")
-	public void the_user_send_the_activation_code_to_the_server(String arg1) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+	public void the_user_send_the_activation_code_to_the_server(String login) throws Throwable {
+		ResponseEntity<UserDO> userResponse = new TestRestTemplate()
+				.getForEntity(LOCALHOST + USER_PORT + "/user/byLogin/" + login, UserDO.class);
+		UserDO user = userResponse.getBody();
+		userJson.setId(user.getId());
+		userJson.setActivateCode(activationCode);
+		ResponseEntity<SimpleResponse> response = new TestRestTemplate()
+				.postForEntity(LOCALHOST + USER_PORT + "/user/register/activate", userJson, SimpleResponse.class);
+		assertThat("Activaion failure", response.getStatusCode().is2xxSuccessful());
 	}
 
 	@Then("^The user \"(.*?)\" should be active$")
-	public void the_user_should_be_active(String arg1) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+	public void the_user_should_be_active(String login) throws Throwable {
+		ResponseEntity<UserDO> userResponse = new TestRestTemplate()
+				.getForEntity(LOCALHOST + USER_PORT + "/user/byLogin/" + login, UserDO.class);
+		assertThat("User should be active", userResponse.getBody().isActive());
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pilaf.sdc.user.json.SimpleResponse;
 import com.pilaf.sdc.user.json.UserJSON;
 import com.pilaf.sdc.user.model.UserActivationCodeDO;
 import com.pilaf.sdc.user.model.UserDO;
@@ -56,8 +57,9 @@ public class UserRestController {
 	}
 
 	@RequestMapping(value = "register/activate", method = RequestMethod.POST)
-	public String activateUser(@RequestBody UserJSON userJson) {
-		return userService.activateUser(userJson.getId(), userJson.getActivateCode());
+	public SimpleResponse activateUser(@RequestBody UserJSON userJson) {
+		userService.activateUser(userJson.getId(), userJson.getActivateCode());
+		return new SimpleResponse("User activated");
 	}
 
 	@RequestMapping(value = "code/{userid}", method = RequestMethod.GET)
