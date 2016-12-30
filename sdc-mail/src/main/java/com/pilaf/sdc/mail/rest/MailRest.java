@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,8 +40,8 @@ public class MailRest {
 	}
 
 	@ResponseBody
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "byRecipent/{mail}", method = RequestMethod.GET)
-	public List<OutputMsgDO> getMsgBySender(@PathVariable("mail") String mail) {
+	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "byRecipent", method = RequestMethod.GET)
+	public List<OutputMsgDO> getMsgByRecipent(@RequestParam("mail") String mail) {
 		return sendMailService.getMessagesByRecipent(mail);
 	}
 

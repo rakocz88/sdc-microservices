@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.boot.test.TestRestTemplate;
@@ -49,7 +50,7 @@ public class UserSteps implements Constants {
 	public void i_should_recieve_an_email_with_the_code_to_activate_the_user_on_the_address(String email)
 			throws Throwable {
 		ResponseEntity<OutputMsgDO[]> outPutMsg = new TestRestTemplate()
-				.getForEntity(LOCALHOST + MAIL_PORT + "/mail/byRecipent/" + email, OutputMsgDO[].class);
+				.getForEntity(LOCALHOST + MAIL_PORT + "/mail/byRecipent?mail=" + email, OutputMsgDO[].class);
 		List<OutputMsgDO> filteredElems = Arrays.asList(outPutMsg.getBody()).stream()
 				.filter(elem -> email.equals(elem.getRecipentMail())).collect(Collectors.toList());
 		assertThat("List of email amount is wrong", filteredElems.size() == 1);
@@ -66,10 +67,13 @@ public class UserSteps implements Constants {
 	public void the_code_in_the_email_should_be_present_in_the_code_repository_for_the_user_and_it_should_not_be_terminated(
 			String login) throws Throwable {
 		ResponseEntity<UserDO> userResponse = new TestRestTemplate()
-				.getForEntity(LOCALHOST + USER_PORT + "/byLogin/" + login, UserDO.class);
-		ResponseEntity<UserActivationCodeDO[]> outPutMsgResponse = new TestRestTemplate().getForEntity(
+				.getForEntity(LOCALHOST + USER_PORT + "/user/byLogin/" + login, UserDO.class);
+		ResponseEntity<UserActivationCodeDO[]> activationCodeResponse = new TestRestTemplate().getForEntity(
 				LOCALHOST + USER_PORT + "/user/code/" + userResponse.getBody().getId(), UserActivationCodeDO[].class);
-		assertThat("Wrong response type for codes", outPutMsgResponse.getStatusCode().is2xxSuccessful());
+		assertThat("Wrong response type for codes", activationCodeResponse.getStatusCode().is2xxSuccessful());
+		List<UserActivationCodeDO> activationCodeList = Arrays.asList(activationCodeResponse.getBody()).stream()
+				.filter(elem -> elem.isTerminated() == false).collect(Collectors.toList());
+		assertThat("No active activation code ", activationCodeList.size() > 0);
 	}
 
 	@Then("^The user \"(.*?)\" should exist and have the filds pass= \"(.*?)\" , firstname = \"(.*?)\" , surname = \"(.*?)\"$")
