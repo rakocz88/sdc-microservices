@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.pilaf.sdc.user.json.MailMsg;
@@ -16,17 +20,14 @@ import com.pilaf.sdc.user.repository.UserActivationCodeRepository;
 import com.pilaf.sdc.user.repository.UserRepository;
 
 @Service
-public class UserService
-// implements UserDetailsService
-{
+public class UserService implements UserDetailsService {
 
 	private UserRepository userRepository;
 	private MailService mailService;
 	private CodeGenerator codeGenerator;
 	private UserActivationCodeRepository userActivationCodeRepository;
 
-	// private final AccountStatusUserDetailsChecker detailsChecker = new
-	// AccountStatusUserDetailsChecker();
+	private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
 
 	@Autowired
 	public UserService(UserRepository userRepository, MailService mailService, CodeGenerator codeGenerator,
@@ -87,10 +88,9 @@ public class UserService
 		return userActivationCodeRepository.findByUser(user);
 	}
 
-	// @Override
-	// public UserDetails loadUserByUsername(String username) throws
-	// UsernameNotFoundException {
-	// return findActiveUserByLogin(username);
-	// }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return findActiveUserByLogin(username);
+	}
 
 }

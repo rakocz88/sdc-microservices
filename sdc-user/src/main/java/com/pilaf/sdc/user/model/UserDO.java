@@ -2,6 +2,7 @@ package com.pilaf.sdc.user.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,13 +16,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.pilaf.sdc.user.json.UserJSON;
 
 @Entity
 @Table(name = "SDCUser")
-public class UserDO implements Serializable
-// , UserDetails
-{
+public class UserDO implements Serializable, UserDetails {
 
 	/**
 	 * 
@@ -174,113 +176,111 @@ public class UserDO implements Serializable
 		this.active = active;
 	}
 
-	// @Override
-	// public int hashCode() {
-	// final int prime = 31;
-	// int result = 1;
-	// result = prime * result + (active ? 1231 : 1237);
-	// result = prime * result + ((address == null) ? 0 : address.hashCode());
-	// result = prime * result + ((birthDate == null) ? 0 :
-	// birthDate.hashCode());
-	// result = prime * result + ((contact == null) ? 0 : contact.hashCode());
-	// result = prime * result + ((firstName == null) ? 0 :
-	// firstName.hashCode());
-	// result = prime * result + ((id == null) ? 0 : id.hashCode());
-	// result = prime * result + ((login == null) ? 0 : login.hashCode());
-	// result = prime * result + ((password == null) ? 0 : password.hashCode());
-	// result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-	// result = prime * result + ((userType == null) ? 0 : userType.hashCode());
-	// return result;
-	// }
-	//
-	// @Override
-	// public boolean equals(Object obj) {
-	// if (this == obj)
-	// return true;
-	// if (obj == null)
-	// return false;
-	// if (getClass() != obj.getClass())
-	// return false;
-	// UserDO other = (UserDO) obj;
-	// if (active != other.active)
-	// return false;
-	// if (address == null) {
-	// if (other.address != null)
-	// return false;
-	// } else if (!address.equals(other.address))
-	// return false;
-	// if (birthDate == null) {
-	// if (other.birthDate != null)
-	// return false;
-	// } else if (!birthDate.equals(other.birthDate))
-	// return false;
-	// if (contact == null) {
-	// if (other.contact != null)
-	// return false;
-	// } else if (!contact.equals(other.contact))
-	// return false;
-	// if (firstName == null) {
-	// if (other.firstName != null)
-	// return false;
-	// } else if (!firstName.equals(other.firstName))
-	// return false;
-	// if (id == null) {
-	// if (other.id != null)
-	// return false;
-	// } else if (!id.equals(other.id))
-	// return false;
-	// if (login == null) {
-	// if (other.login != null)
-	// return false;
-	// } else if (!login.equals(other.login))
-	// return false;
-	// if (password == null) {
-	// if (other.password != null)
-	// return false;
-	// } else if (!password.equals(other.password))
-	// return false;
-	// if (surname == null) {
-	// if (other.surname != null)
-	// return false;
-	// } else if (!surname.equals(other.surname))
-	// return false;
-	// if (userType == null) {
-	// if (other.userType != null)
-	// return false;
-	// } else if (!userType.equals(other.userType))
-	// return false;
-	// return true;
-	// }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
+		return result;
+	}
 
-	// @Override
-	// public Collection<? extends GrantedAuthority> getAuthorities() {
-	// return null;
-	// }
-	//
-	// @Override
-	// public String getUsername() {
-	// return this.getLogin();
-	// }
-	//
-	// @Override
-	// public boolean isAccountNonExpired() {
-	// return false;
-	// }
-	//
-	// @Override
-	// public boolean isAccountNonLocked() {
-	// return false;
-	// }
-	//
-	// @Override
-	// public boolean isCredentialsNonExpired() {
-	// return false;
-	// }
-	//
-	// @Override
-	// public boolean isEnabled() {
-	//
-	// return this.isActive();
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDO other = (UserDO) obj;
+		if (active != other.active)
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (contact == null) {
+			if (other.contact != null)
+				return false;
+		} else if (!contact.equals(other.contact))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		if (userType == null) {
+			if (other.userType != null)
+				return false;
+		} else if (!userType.equals(other.userType))
+			return false;
+		return true;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.getLogin();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+
+		return this.isActive();
+	}
 
 }
