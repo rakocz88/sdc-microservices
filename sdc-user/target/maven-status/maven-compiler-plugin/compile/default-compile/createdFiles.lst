@@ -1,6 +1,9 @@
 com\pilaf\sdc\user\json\MailResponse.class
 com\pilaf\sdc\user\repository\UserRepository.class
+com\pilaf\sdc\user\service\TestBean.class
+com\pilaf\sdc\user\exception\UserNotFoundException.class
 com\pilaf\sdc\user\rest\UserRestController.class
+com\pilaf\sdc\user\json\SimpleResponse.class
 com\pilaf\sdc\user\model\UserActivationCodeDO.class
 com\pilaf\sdc\user\model\UserDO.class
 com\pilaf\sdc\user\json\MailMsg.class
@@ -13,4 +16,5 @@ com\pilaf\sdc\user\model\UserType.class
 com\pilaf\sdc\user\json\UserJSON.class
 com\pilaf\sdc\user\repository\UserActivationCodeRepository.class
 com\pilaf\sdc\user\UserWebApp.class
+com\pilaf\sdc\user\WebSecurityConfig.class
 com\pilaf\sdc\user\model\AddressDO.class

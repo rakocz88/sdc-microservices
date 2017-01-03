@@ -16,6 +16,7 @@ import com.pilaf.sdc.user.json.SimpleResponse;
 import com.pilaf.sdc.user.json.UserJSON;
 import com.pilaf.sdc.user.model.UserActivationCodeDO;
 import com.pilaf.sdc.user.model.UserDO;
+import com.pilaf.sdc.user.service.TestBean;
 import com.pilaf.sdc.user.service.UserService;
 
 @RestController
@@ -23,6 +24,9 @@ import com.pilaf.sdc.user.service.UserService;
 public class UserRestController {
 
 	private UserService userService;
+
+	@Autowired
+	private TestBean testBean;
 
 	@Autowired
 	public UserRestController(UserService userService) {
@@ -35,6 +39,7 @@ public class UserRestController {
 	@ResponseBody
 	public Page<UserDO> getAllUsers(@PathVariable("page") int page, @PathVariable("size") int size,
 			@PathVariable("direction") String direction, @PathVariable("sortField") String sortField) {
+		testBean.testMe();
 		return userService.getAll(page, size, direction, sortField);
 	}
 
@@ -48,7 +53,7 @@ public class UserRestController {
 	@RequestMapping(value = "byLogin/{login}", method = RequestMethod.GET)
 	public UserDO getUserByLogin(@PathVariable("login") String login) {
 
-		return userService.findUserByLogin(login);
+		return userService.findActiveUserByLogin(login);
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

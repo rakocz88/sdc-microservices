@@ -16,12 +16,17 @@ import com.pilaf.sdc.user.repository.UserActivationCodeRepository;
 import com.pilaf.sdc.user.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService
+// implements UserDetailsService
+{
 
 	private UserRepository userRepository;
 	private MailService mailService;
 	private CodeGenerator codeGenerator;
 	private UserActivationCodeRepository userActivationCodeRepository;
+
+	// private final AccountStatusUserDetailsChecker detailsChecker = new
+	// AccountStatusUserDetailsChecker();
 
 	@Autowired
 	public UserService(UserRepository userRepository, MailService mailService, CodeGenerator codeGenerator,
@@ -42,8 +47,10 @@ public class UserService {
 		return userRepository.save(userDo);
 	}
 
-	public UserDO findUserByLogin(String userLogin) {
-		return userRepository.findByLogin(userLogin);
+	public UserDO findActiveUserByLogin(String userLogin) {
+		UserDO user = userRepository.findByLogin(userLogin);
+		// detailsChecker.check(user);
+		return user;
 	}
 
 	public UserDO registerUser(UserDO userDO) {
@@ -79,5 +86,11 @@ public class UserService {
 		UserDO user = userRepository.findOne(userid);
 		return userActivationCodeRepository.findByUser(user);
 	}
+
+	// @Override
+	// public UserDetails loadUserByUsername(String username) throws
+	// UsernameNotFoundException {
+	// return findActiveUserByLogin(username);
+	// }
 
 }

@@ -5,6 +5,8 @@ C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\mode
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\json\MailResponse.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\repository\UserRepository.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\model\Country.java
+C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\WebSecurityConfig.java
+C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\exception\UserNotFoundException.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\repository\UserActivationCodeRepository.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\json\UserJSON.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\rest\UserRestController.java
@@ -12,5 +14,7 @@ C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\serv
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\model\UserType.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\service\CodeGenerator.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\service\MailService.java
+C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\service\TestBean.java
+C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\json\SimpleResponse.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\model\ContactDO.java
 C:\prywatne\sdc\sdc-microservices\sdc-user\src\main\java\com\pilaf\sdc\user\model\UserActivationCodeDO.java

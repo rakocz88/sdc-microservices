@@ -100,7 +100,7 @@ public class UserServiceUnitTest implements SdcTestConstants {
 
 	@Test
 	public void findUserByNameUnitTest() {
-		UserDO user = userService.findUserByLogin(LOGIN_NAME);
+		UserDO user = userService.findActiveUserByLogin(LOGIN_NAME);
 		assertThat("Wrong user data", userWithLogin.equals(user));
 	}
 
