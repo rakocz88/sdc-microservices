@@ -14,18 +14,18 @@ import com.pilaf.sdc.core.user.service.UserService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/**", "/index").permitAll().antMatchers("/user/**").hasRole("USER")
-				.and().httpBasic();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+	http.authorizeRequests().antMatchers("/css/**", "/index").permitAll().antMatchers("/user/**")
+		.hasAuthority("USERS").and().httpBasic();
+    }
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(new PlaintextPasswordEncoder());
-	}
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	auth.userDetailsService(userService).passwordEncoder(new PlaintextPasswordEncoder());
+    }
 
 }
