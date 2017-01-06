@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pilaf.sdc.core.user.model.RoleDO;
 import com.pilaf.sdc.core.user.model.UserDO;
+import com.pilaf.sdc.core.user.model.security.RoleDO;
 
 @Repository
 public interface RoleRepository extends PagingAndSortingRepository<RoleDO, Long> {

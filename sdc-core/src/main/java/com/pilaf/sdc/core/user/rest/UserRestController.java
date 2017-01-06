@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pilaf.sdc.core.json.SimpleResponse;
 import com.pilaf.sdc.core.json.UserJSON;
-import com.pilaf.sdc.core.user.model.Privileges;
 import com.pilaf.sdc.core.user.model.UserActivationCodeDO;
 import com.pilaf.sdc.core.user.model.UserDO;
-import com.pilaf.sdc.core.user.service.TestBean;
+import com.pilaf.sdc.core.user.model.security.Privileges;
 import com.pilaf.sdc.core.user.service.UserService;
 
 @RestController
@@ -31,18 +30,16 @@ public class UserRestController {
     private UserService userService;
 
     @Autowired
-    private TestBean testBean;
-
-    @Autowired
     public UserRestController(UserService userService) {
 	super();
 	this.userService = userService;
     }
 
+    @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or hasAuthority('" + Privileges.USER_PRIVILEGE
+	    + "')")
     @RequestMapping(value = "/all/{page}/{size}/{direction}/{sortField}", method = RequestMethod.GET, produces = {
 	    MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
-    @Secured("USERS")
     public Page<UserJSON> getAllUsers(@PathVariable("page") int page, @PathVariable("size") int size,
 	    @PathVariable("direction") String direction, @PathVariable("sortField") String sortField) {
 	Page<UserJSON> response = userService.getAll(page, size, direction, sortField)
@@ -50,6 +47,8 @@ public class UserRestController {
 	return response;
     }
 
+    @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or hasAuthority('" + Privileges.USER_PRIVILEGE
+	    + "')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = {
 	    MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -57,6 +56,8 @@ public class UserRestController {
 	return userService.createUser(new UserDO(userJSon));
     }
 
+    @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or hasAuthority('" + Privileges.USER_PRIVILEGE
+	    + "')")
     @RequestMapping(value = "byLogin/{login}", method = RequestMethod.GET)
     public UserDO getUserByLogin(@PathVariable("login") String login) {
 
@@ -74,8 +75,11 @@ public class UserRestController {
 	return new SimpleResponse("User activated");
     }
 
+    @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or hasAuthority('" + Privileges.USER_PRIVILEGE
+	    + "')")
     @RequestMapping(value = "code/{userid}", method = RequestMethod.GET)
     public List<UserActivationCodeDO> getCodesByUser(@PathVariable("userid") Long userid) {
+
 	return userService.getActivationCodesByUserId(userid);
     }
 }

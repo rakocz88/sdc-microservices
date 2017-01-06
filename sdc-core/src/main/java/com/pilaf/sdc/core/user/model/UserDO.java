@@ -23,6 +23,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.pilaf.sdc.core.json.UserJSON;
+import com.pilaf.sdc.core.user.model.security.RoleDO;
 
 @Entity
 @Table(name = "SDCUser")

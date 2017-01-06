@@ -9,11 +9,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import com.pilaf.sdc.core.user.model.PrivilegeDO;
-import com.pilaf.sdc.core.user.model.Privileges;
-import com.pilaf.sdc.core.user.model.RoleDO;
-import com.pilaf.sdc.core.user.model.Roles;
 import com.pilaf.sdc.core.user.model.UserDO;
+import com.pilaf.sdc.core.user.model.security.PrivilegeDO;
+import com.pilaf.sdc.core.user.model.security.Privileges;
+import com.pilaf.sdc.core.user.model.security.RoleDO;
+import com.pilaf.sdc.core.user.model.security.Roles;
 import com.pilaf.sdc.core.user.repository.PrivilegesRepository;
 import com.pilaf.sdc.core.user.repository.RoleRepository;
 import com.pilaf.sdc.core.user.repository.UserRepository;
@@ -34,15 +34,14 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
-	PrivilegeDO usersPrivilege = new PrivilegeDO(Privileges.USERS.name());
-	PrivilegeDO mailPrivilege = new PrivilegeDO(Privileges.MAIL.name());
-	PrivilegeDO testPrivilege = new PrivilegeDO(Privileges.TEST.name());
+	PrivilegeDO usersPrivilege = new PrivilegeDO(Privileges.USER_PRIVILEGE);
+	PrivilegeDO mailPrivilege = new PrivilegeDO(Privileges.MAIL_PRIVILEGE);
 
 	RoleDO adminRole = new RoleDO(Roles.ADMIN.name());
 	RoleDO userRole = new RoleDO(Roles.USER.name());
 
-	adminRole.setPrivileges(Arrays.asList(new PrivilegeDO[] { usersPrivilege, mailPrivilege, testPrivilege }));
-	userRole.setPrivileges(Arrays.asList(new PrivilegeDO[] { mailPrivilege, testPrivilege }));
+	adminRole.setPrivileges(Arrays.asList(new PrivilegeDO[] { usersPrivilege, mailPrivilege }));
+	userRole.setPrivileges(Arrays.asList(new PrivilegeDO[] { mailPrivilege }));
 
 	UserDO admin = new UserDO("admin", "a");
 	admin.setRoles(Arrays.asList(new RoleDO[] { adminRole }));

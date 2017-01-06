@@ -1,4 +1,4 @@
-package com.pilaf.sdc.core.user.model;
+package com.pilaf.sdc.core.user.model.security;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.pilaf.sdc.core.user.model.UserDO;
 
 @Entity
 public class RoleDO implements Serializable {

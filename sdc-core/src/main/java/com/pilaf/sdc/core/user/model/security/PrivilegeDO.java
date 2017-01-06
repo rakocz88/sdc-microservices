@@ -1,4 +1,4 @@
-package com.pilaf.sdc.core.user.model;
+package com.pilaf.sdc.core.user.model.security;
 
 import java.io.Serializable;
 import java.util.List;

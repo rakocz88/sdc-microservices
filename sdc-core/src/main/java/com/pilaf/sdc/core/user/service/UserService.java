@@ -19,9 +19,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.pilaf.sdc.core.json.MailMsg;
-import com.pilaf.sdc.core.user.model.RoleDO;
 import com.pilaf.sdc.core.user.model.UserActivationCodeDO;
 import com.pilaf.sdc.core.user.model.UserDO;
+import com.pilaf.sdc.core.user.model.security.RoleDO;
 import com.pilaf.sdc.core.user.repository.UserActivationCodeRepository;
 import com.pilaf.sdc.core.user.repository.UserRepository;
 
