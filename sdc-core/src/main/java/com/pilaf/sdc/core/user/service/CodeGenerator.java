@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 
 @Service
-public final class CodeGenerator {
-	private SecureRandom random = new SecureRandom();
+public class CodeGenerator {
+    private SecureRandom random = new SecureRandom();
 
-	public String generateCode() {
-		return new BigInteger(130, random).toString(32);
-	}
+    public String generateCode() {
+	return new BigInteger(130, random).toString(32);
+    }
 }

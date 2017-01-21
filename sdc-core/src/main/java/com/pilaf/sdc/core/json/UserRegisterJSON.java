@@ -3,15 +3,16 @@ package com.pilaf.sdc.core.json;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.NotNull;
 
 import com.pilaf.sdc.core.user.model.AddressDO;
 import com.pilaf.sdc.core.user.model.ContactDO;
 import com.pilaf.sdc.core.user.model.UserDO;
 import com.pilaf.sdc.core.user.model.UserType;
 
-public class UserJSON implements Serializable {
+public class UserRegisterJSON implements Serializable {
 
     /**
      * 
@@ -20,14 +21,19 @@ public class UserJSON implements Serializable {
 
     private Long id;
 
+    @NotNull
     private String login;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String surname;
 
+    @NotNull
     private LocalDate birthDate;
 
     private AddressDO address;
@@ -36,15 +42,13 @@ public class UserJSON implements Serializable {
 
     private ContactDO contact;
 
-    private String activateCode;
-
     private List<String> roles;
 
-    public UserJSON() {
+    public UserRegisterJSON() {
 	super();
     }
 
-    public UserJSON(String login, String password, String firstName, String surname, LocalDate birthDate,
+    public UserRegisterJSON(String login, String password, String firstName, String surname, LocalDate birthDate,
 	    AddressDO address, List<UserType> userType, ContactDO contact) {
 	super();
 	this.login = login;
@@ -57,7 +61,8 @@ public class UserJSON implements Serializable {
 	this.contact = contact;
     }
 
-    public UserJSON(UserDO user) {
+    public UserRegisterJSON(UserDO user) {
+	this.id = user.getId();
 	this.login = user.getLogin();
 	this.password = user.getPassword();
 	this.firstName = user.getFirstName();
@@ -66,7 +71,8 @@ public class UserJSON implements Serializable {
 	this.address = user.getAddress();
 	this.userType = user.getUserType();
 	this.contact = user.getContact();
-	this.roles = user.getRoles().parallelStream().map(role -> role.getName()).collect(Collectors.toList());
+	this.roles = (user.getRoles() == null) ? null
+		: user.getRoles().parallelStream().map(role -> role.getName()).collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -139,14 +145,6 @@ public class UserJSON implements Serializable {
 
     public void setContact(ContactDO contact) {
 	this.contact = contact;
-    }
-
-    public String getActivateCode() {
-	return activateCode;
-    }
-
-    public void setActivateCode(String activateCode) {
-	this.activateCode = activateCode;
     }
 
     public List<String> getRoles() {

@@ -1,8 +1,7 @@
 package com.pilaf.sdc.core.user.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,15 +18,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import com.pilaf.sdc.core.json.UserJSON;
+import com.pilaf.sdc.core.json.UserRegisterJSON;
 import com.pilaf.sdc.core.user.model.security.RoleDO;
 
 @Entity
 @Table(name = "SDCUser")
-public class UserDO {
+public class UserDO implements Serializable {
 
     /**
      * 
@@ -38,12 +36,16 @@ public class UserDO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String login;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String surname;
 
     private LocalDate birthDate;
@@ -68,7 +70,7 @@ public class UserDO {
 	super();
     }
 
-    public UserDO(UserJSON userJson) {
+    public UserDO(UserRegisterJSON userJson) {
 	super();
 	this.login = userJson.getLogin();
 	this.password = userJson.getPassword();

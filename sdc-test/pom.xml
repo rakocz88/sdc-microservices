@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pilaf.sdc</groupId>
 	<artifactId>sdc-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -92,7 +92,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.pilaf.sdc</groupId>
-			<artifactId>sdc-user</artifactId>
+			<artifactId>sdc-core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>

@@ -1,8 +1,8 @@
 package com.pilaf.sdc.core.user.service;
 
-import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.pilaf.sdc.core.json.MailMsg;
 
@@ -10,9 +10,10 @@ import com.pilaf.sdc.core.json.MailMsg;
 public class MailService {
 
     public String sendMail(MailMsg msg) {
-	ResponseEntity<String> response = new TestRestTemplate()
-		.postForEntity("http://localhost:" + 8083 + "/mail/send", msg, String.class);
+	ResponseEntity<String> response = new RestTemplate().postForEntity("http://localhost:" + 8083 + "/mail/send",
+		msg, String.class);
 	return response.getBody();
+
     }
 
 }

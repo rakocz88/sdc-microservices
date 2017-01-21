@@ -45,15 +45,24 @@ public class UserService implements UserDetailsService {
 	this.userActivationCodeRepository = userActivationCodeRepository;
     }
 
+    // @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or
+    // hasAuthority('" + Privileges.USER_PRIVILEGE
+    // + "')")
     public Page<UserDO> getAll(int page, int size, String direction, String sortField) {
 	PageRequest pageRequest = new PageRequest(page, size, Direction.fromString(direction), sortField);
 	return userRepository.findAll(pageRequest);
     }
 
+    // @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or
+    // hasAuthority('" + Privileges.USER_PRIVILEGE
+    // + "')")
     public UserDO createUser(UserDO userDo) {
 	return userRepository.save(userDo);
     }
 
+    // @PreAuthorize("hasAuthority('" + Privileges.ADMIN_PRIVILEGE + "') or
+    // hasAuthority('" + Privileges.USER_PRIVILEGE
+    // + "')")
     public UserDO findActiveUserByLogin(String userLogin) {
 	UserDO user = userRepository.findByLogin(userLogin);
 	return user;
@@ -62,7 +71,7 @@ public class UserService implements UserDetailsService {
     public UserDO registerUser(UserDO userDO) {
 	userRepository.save(userDO);
 	String code = codeGenerator.generateCode();
-	MailMsg mailMsg = new MailMsg(code, userDO.getContact().getEmailAddress(), 1l);
+	MailMsg mailMsg = new MailMsg(code, "Witamy w SDC", userDO.getContact().getEmailAddress(), 1l);
 	mailService.sendMail(mailMsg);
 	userActivationCodeRepository.save(new UserActivationCodeDO(code, userDO));
 	return userDO;
